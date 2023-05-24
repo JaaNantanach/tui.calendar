@@ -10,7 +10,7 @@ npm install tui-calendar-angular
 "styles": [
   .
   .
-  "node_modules/tui-calendar-jaa/dist/toastui-calendar.min.css",
+  "node_modules/tui-calendar-angular/dist/toastui-calendar.min.css",
   "node_modules/tui-date-picker/dist/tui-date-picker.min.css",
   "node_modules/tui-time-picker/dist/tui-time-picker.min.css"
  ],
