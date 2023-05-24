@@ -10,6 +10,6 @@
       }
     ]
   },
-  "files": ["src/index.ts", "src/tui-code-snippet.d.ts"],
+  "files": ["src/index.ts", "src/tui-code-snippet.ts"],
   "include": []
 }

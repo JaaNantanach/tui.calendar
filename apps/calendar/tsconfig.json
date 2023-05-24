@@ -5,7 +5,7 @@
     "jsx": "react-jsx",
     "jsxImportSource": "preact",
     "esModuleInterop": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "moduleResolution": "node",
