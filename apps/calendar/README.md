@@ -1,3 +1,30 @@
+## Getting Started
+[![npm](https://img.shields.io/npm/v/tui-calendar-angular.svg)](https://www.npmjs.com/package/tui-calendar-angular)
+
+#### Install
+```sh
+npm install tui-calendar-angular
+```
+#### Add css to angular.json
+```sh
+"styles": [
+  .
+  .
+  "node_modules/tui-calendar-jaa/dist/toastui-calendar.min.css",
+  "node_modules/tui-date-picker/dist/tui-date-picker.min.css",
+  "node_modules/tui-time-picker/dist/tui-time-picker.min.css"
+ ],
+```
+
+#### Add tui-code-snippet.d.ts to tsconfig.app.json
+```sh
+"include": [
+  .
+  .
+  "node_modules/tui-calendar-angular/types/tui-code-snippet.d.ts"
+]
+```
+
 # ![TOAST UI Calendar](https://user-images.githubusercontent.com/26706716/39230183-7f8ff186-48a0-11e8-8d9c-9699d2d0e471.png)
 
 > A JavaScript calendar that is full featured. Now your service just got the customizable calendar.
