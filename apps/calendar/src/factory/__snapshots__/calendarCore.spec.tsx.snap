@@ -26,6 +26,9 @@ Object {
     "visibleWeeksCount": 0,
     "workweek": false,
   },
+  "popupOptions": Object {
+    "enableEventState": true,
+  },
   "template": Object {
     "allday": [Function],
     "alldayTitle": [Function],

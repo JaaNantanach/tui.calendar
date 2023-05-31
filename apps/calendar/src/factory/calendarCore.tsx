@@ -131,6 +131,8 @@ import type { ThemeState, ThemeStore } from '@t/theme';
  *   @param {string} [options.defaultView="week"] - Initial view type. Available values are: 'day', 'week', 'month'.
  *   @param {boolean} [options.useFormPopup=false] - Whether to use the default form popup when creating/modifying events.
  *   @param {boolean} [options.useDetailPopup=false] - Whether to use the default detail popup when clicking events.
+ *   @param {object} [options.popupOptions] - Popup options for enable or disable some fileds.
+ *     @param {boolean} [options.popupOptions.enableEventState=true] - Whether to display event state.
  *   @param {boolean} [options.isReadOnly=false] - Whether the calendar is read-only.
  *   @param {boolean} [options.usageStatistics=true] - Whether to allow collect hostname and send the information to google analytics.
  *                                              For more information, check out the {@link https://github.com/nhn/tui.calendar/blob/main/apps/calendar/README.md#collect-statistics-on-the-use-of-open-source|documentation}.

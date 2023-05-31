@@ -1,3 +1,5 @@
+process.env.TZ = 'Asia/Seoul';
+
 module.exports = {
   testEnvironment: 'jsdom',
   clearMocks: true,

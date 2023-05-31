@@ -26,7 +26,7 @@ import { cls } from '@src/helpers/css';
 import { isLeftOutOfLayout, isTopOutOfLayout } from '@src/helpers/popup';
 import { FormStateActionType, useFormState } from '@src/hooks/popup/useFormState';
 import type EventModel from '@src/model/eventModel';
-import { calendarSelector } from '@src/selectors';
+import { calendarSelector, optionsSelector } from '@src/selectors';
 import { eventFormPopupParamSelector } from '@src/selectors/popup';
 import TZDate from '@src/time/date';
 import { compare } from '@src/time/datetime';
@@ -95,6 +95,7 @@ function getChanges(event: EventModel, eventObject: EventObject) {
 
 export function EventFormPopup() {
   const { calendars } = useStore(calendarSelector);
+  const { popupOptions } = useStore(optionsSelector);
   const { hideAllPopup } = useDispatch('popup');
   const popupParams = useStore(eventFormPopupParamSelector);
   const { start, end, popupArrowPointPosition, close, isCreationPopup, event } = popupParams ?? {};
@@ -214,7 +215,12 @@ export function EventFormPopup() {
             formStateDispatch={formStateDispatch}
             ref={datePickerRef}
           />
-          <EventStateSelector eventState={formState.state} formStateDispatch={formStateDispatch} />
+          {popupOptions.enableEventState && (
+            <EventStateSelector
+              eventState={formState.state}
+              formStateDispatch={formStateDispatch}
+            />
+          )}
           <ClosePopupButton type="form" close={close} />
           <PopupSection>
             <ConfirmPopupButton>

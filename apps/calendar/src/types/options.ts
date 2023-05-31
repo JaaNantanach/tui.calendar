@@ -42,6 +42,10 @@ export interface MonthOptions {
   visibleEventCount?: number;
 }
 
+export interface PopupOptions {
+  enableEventState?: boolean;
+}
+
 export interface GridSelectionOptions {
   enableDblClick?: boolean;
   enableClick?: boolean;
@@ -81,6 +85,7 @@ export interface Options {
   calendars?: CalendarInfo[];
   useFormPopup?: boolean;
   useDetailPopup?: boolean;
+  popupOptions?: PopupOptions;
   gridSelection?: boolean | GridSelectionOptions;
   isReadOnly?: boolean;
   usageStatistics?: boolean;

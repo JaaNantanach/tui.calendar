@@ -1,9 +1,11 @@
 import { h } from 'preact';
 
 import { Template } from '@src/components/template';
+import { useStore } from '@src/contexts/calendarStore';
 import { cls } from '@src/helpers/css';
 import { useCalendarById } from '@src/hooks/calendar/useCalendarById';
 import type EventModel from '@src/model/eventModel';
+import { optionsSelector } from '@src/selectors';
 
 interface Props {
   event: EventModel;
@@ -24,6 +26,7 @@ const classNames = {
 
 // eslint-disable-next-line complexity
 export function EventDetailSectionDetail({ event }: Props) {
+  const { popupOptions } = useStore(optionsSelector);
   const { location, recurrenceRule, attendees, state, calendarId, body } = event;
   const calendar = useCalendarById(calendarId);
 
@@ -53,7 +56,7 @@ export function EventDetailSectionDetail({ event }: Props) {
           </span>
         </div>
       )}
-      {state && (
+      {popupOptions.enableEventState && state && (
         <div className={classNames.detailItem}>
           <span className={classNames.stateIcon} />
           <span className={classNames.content}>

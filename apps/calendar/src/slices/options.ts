@@ -11,6 +11,7 @@ import type {
   CollapseDuplicateEventsOptions,
   GridSelectionOptions,
   Options,
+  PopupOptions,
   TimezoneOptions,
 } from '@t/options';
 import type {
@@ -99,6 +100,13 @@ function initializeMonthOptions(monthOptions: Options['month'] = {}): CalendarMo
   return month;
 }
 
+export function initializeUseFormPopupOptions(options: Options['popupOptions']): PopupOptions {
+  return {
+    enableEventState: true,
+    ...options,
+  };
+}
+
 export function initializeGridSelectionOptions(
   options: Options['gridSelection']
 ): GridSelectionOptions {
@@ -138,6 +146,7 @@ export function createOptionsSlice(options: Options = {}): OptionsSlice {
       defaultView: options.defaultView ?? 'week',
       useFormPopup: options.useFormPopup ?? false,
       useDetailPopup: options.useDetailPopup ?? false,
+      popupOptions: initializeUseFormPopupOptions(options.popupOptions),
       isReadOnly: options.isReadOnly ?? false,
       week: initializeWeekOptions(options.week),
       month: initializeMonthOptions(options.month),
