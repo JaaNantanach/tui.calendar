@@ -29,6 +29,7 @@ An option object is a nested object with the following properties. Click on the 
 | [defaultView](#defaultview)         | <code>'week'</code>                       | Default view type                                                                                             |
 | [useFormPopup](#useformpopup)       | <code>false</code>                        | Whether to use the built-in event creation/modification pop-up                                                |
 | [useDetailPopup](#usedetailpopup)   | <code>false</code>                        | Whether to use the built-in event details pop-up                                                              |
+| [popupOptions](#popupOptions)       | <code>DEFAULT_POPUP_OPTIONS</code>        | popup view related options
 | [isReadOnly](#isreadonly)           | <code>false</code>                        | Whether the entire calendar is read-only                                                                      |
 | [usageStatistics](#usagestatistics) | <code>true</code>                         | Whether to allow hostname collection for [Google Analytics (GA)](https://analytics.google.com/analytics/web/) |
 | [eventFilter](#eventfilter)         | <code>(event) => !!event.isVisible</code> | Event filter function across calendars                                                                        |
@@ -97,6 +98,49 @@ const calendar = new Calendar('#container', {
 ```
 
 [⬆️ Back to the list](#option-object)
+
+### popupOptions
+
+- Type: `PopupOptions`
+- Default: `DEFAULT_POPUP_OPTIONS`
+
+```ts
+export interface PopupOptions {
+  enableEventState?: boolean;
+}
+```
+
+```js
+const DEFAULT_OPTIONS_OPTIONS = {
+  enableEventState: true
+};
+```
+
+Specifies options related to popup views.
+
+[⬆️ Back to the list](#option-object)
+
+#### popupOptions.enableEventState
+
+- Type: `boolean`
+- Default: `true`
+
+Event state (busy/free) can be excluded from popup/detail popup view, The default value is `true`, and to exclude event state, set it to `false`.
+
+```js
+calendar.setOptions({
+  popupOptions: {
+    enableEventState: false
+  },
+});
+```
+
+| Default                                                                           | Example                                                                          |
+| --------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| ![popup-popupOptions-enableEventState-default](../../assets/options_popup-eventState-before.png) | ![popup-popupOptions-enableEventState-example](../../assets/options_popup-eventState-after.png) |
+| ![detailPopup-popupOptions-enableEventState-default](../../assets/options_popupDetail-eventState-before.png) | ![detailPopup-popupOptions-enableEventState-example](../../assets/options_popupDetail-eventState-after.png) |
+
+[⬆️ Back to the list](#popupOptions)
 
 ### isReadOnly
 
