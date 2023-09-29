@@ -11,13 +11,14 @@ import {
   MONTH_MORE_VIEW_MIN_WIDTH,
   MONTH_MORE_VIEW_PADDING,
 } from '@src/constants/style';
-import { useDispatch } from '@src/contexts/calendarStore';
+import { useDispatch, useStore } from '@src/contexts/calendarStore';
 import { useLayoutContainer } from '@src/contexts/layoutContainer';
-import { useTheme } from '@src/contexts/themeStore';
+import { useMonthTheme, useTheme } from '@src/contexts/themeStore';
 import { cls } from '@src/helpers/css';
 import { getExceedCount } from '@src/helpers/grid';
 import { useDOMNode } from '@src/hooks/common/useDOMNode';
 import type EventUIModel from '@src/model/eventUIModel';
+import { viewSelector } from '@src/selectors';
 import { monthMoreViewSelector } from '@src/selectors/theme';
 import type TZDate from '@src/time/date';
 import { isWeekend } from '@src/time/datetime';
@@ -25,7 +26,7 @@ import { getSize } from '@src/utils/dom';
 
 import type { StyleProp } from '@t/components/common';
 import type { PopupPosition, Rect } from '@t/store';
-import type { ThemeState } from '@t/theme';
+import type { MonthTheme } from '@t/theme';
 
 interface RectSize {
   width: number;
@@ -172,8 +173,30 @@ function usePopupPosition(
   return { popupPosition, containerRefCallback };
 }
 
-function weekendBackgroundColorSelector(theme: ThemeState) {
-  return theme.month.weekend.backgroundColor;
+function getDateBackgroundColor({
+  date,
+  theme,
+  renderDate,
+}: {
+  date: TZDate;
+  theme: MonthTheme;
+  renderDate: TZDate;
+}) {
+  const dayIndex = date.getDay();
+  const thisMonth = renderDate.getMonth();
+  const isSameMonth = thisMonth === date.getMonth();
+
+  const { dayExceptThisMonth, weekend } = theme;
+
+  if (isWeekend(dayIndex)) {
+    return isSameMonth ? weekend.backgroundColor : dayExceptThisMonth.backgroundColor;
+  }
+
+  if (!isSameMonth) {
+    return dayExceptThisMonth.backgroundColor;
+  }
+
+  return 'inherit';
 }
 
 interface Props {
@@ -187,7 +210,10 @@ interface Props {
 export function GridCell({ date, events = [], style, parentContainer, contentAreaHeight }: Props) {
   const layoutContainer = useLayoutContainer();
   const { showSeeMorePopup } = useDispatch('popup');
-  const backgroundColor = useTheme(weekendBackgroundColorSelector);
+
+  const theme = useTheme(useMonthTheme);
+  const { renderDate } = useStore(viewSelector);
+  const backgroundColor = getDateBackgroundColor({ date, theme, renderDate });
 
   const { popupPosition, containerRefCallback } = usePopupPosition(
     events.length,
@@ -214,7 +240,7 @@ export function GridCell({ date, events = [], style, parentContainer, contentAre
   return (
     <div
       className={cls('daygrid-cell')}
-      style={{ ...style, backgroundColor: isWeekend(date.getDay()) ? backgroundColor : 'inherit' }}
+      style={{ ...style, backgroundColor }}
       ref={containerRefCallback}
     >
       <CellHeader

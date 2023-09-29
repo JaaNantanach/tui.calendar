@@ -172,7 +172,10 @@ const DEFAULT_TODAY = {
 
 ```ts
 interface MonthTheme {
-  dayExceptThisMonth: { color: string };
+  dayExceptThisMonth: { 
+    color: string;
+    backgroundColor: string;
+  };
   dayName: {
     borderLeft: string;
     backgroundColor: string;
@@ -198,7 +201,7 @@ interface MonthTheme {
 
 | Theme                                                   | Default value                                         | Description                                           |
 | ------------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| [dayExceptThisMonth](#month-dayexceptthismonth)         | <code>{ color: 'rgba(51, 51, 51, 0.4)' }</code>       | Days except this month                                |
+| [dayExceptThisMonth](#month-dayexceptthismonth)         | <code>DEFAULT_MONTH_DAYEXCEPTTHISMONTH</code>       | Days except this month                                |
 | [holidayExceptThisMonth](#month-holidayexceptthismonth) | <code>{ color: 'rgba(255, 64, 64, 0.4)' }</code>      | Holidays except this month                            |
 | [dayName](#month-dayname)                               | <code>DEFAULT_MONTH_DAYNAME</code>                    | Day of the week                                       |
 | [moreView](#month-moreview)                             | <code>DEFAULT_MORE_VIEW</code>                        | ‘More events’ popup of monthly view                   |
@@ -207,6 +210,11 @@ interface MonthTheme {
 | [gridCell](#month-gridcell)                             | <code>{ headerHeight: 31, footerHeight: null }</code> | Header and footer height of all cells in monthly view |
 
 ```ts
+const DEFAULT_MONTH_DAYEXCEPTTHISMONTH = {
+  color: 'rgba(51, 51, 51, 0.4)',
+  backgroundColor: 'inherit',
+}
+
 const DEFAULT_MONTH_DAYNAME = {
   borderLeft: 'none',
   backgroundColor: 'inherit',
@@ -767,7 +775,7 @@ calendar.setTheme({
 
 #### month-dayExceptThisMonth
 
-Specifies a different month from the current month. You can specify the text color with `color`, and the default value is `'rgba(51, 51, 51, 0.4)'`.
+Specifies a different month from the current month. You can specify the text color and background color with `color` and `backgroundColor`, and the default values are `'rgba(51, 51, 51, 0.4)'` and `'inherit'`.
 
 | Default                                                                               | Example                                                                              |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
@@ -778,6 +786,7 @@ calendar.setTheme({
   month: {
     dayExceptThisMonth: {
       color: 'grey',
+      backgroundColor: '#F2F2F2'
     },
   },
 });

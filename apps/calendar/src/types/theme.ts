@@ -66,7 +66,10 @@ export type WeekTheme = {
 };
 
 export type MonthTheme = {
-  dayExceptThisMonth: { color: string };
+  dayExceptThisMonth: {
+    color: string;
+    backgroundColor: string;
+  };
   dayName: MonthDayNameTheme;
   holidayExceptThisMonth: { color: string };
   moreView: {
