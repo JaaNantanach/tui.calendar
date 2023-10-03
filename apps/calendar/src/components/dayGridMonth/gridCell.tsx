@@ -13,13 +13,13 @@ import {
 } from '@src/constants/style';
 import { useDispatch, useStore } from '@src/contexts/calendarStore';
 import { useLayoutContainer } from '@src/contexts/layoutContainer';
-import { useMonthTheme, useTheme } from '@src/contexts/themeStore';
+import { useTheme } from '@src/contexts/themeStore';
 import { cls } from '@src/helpers/css';
 import { getExceedCount } from '@src/helpers/grid';
 import { useDOMNode } from '@src/hooks/common/useDOMNode';
 import type EventUIModel from '@src/model/eventUIModel';
 import { viewSelector } from '@src/selectors';
-import { monthMoreViewSelector } from '@src/selectors/theme';
+import { monthMoreViewSelector, monthThemeSelector } from '@src/selectors/theme';
 import type TZDate from '@src/time/date';
 import { isWeekend } from '@src/time/datetime';
 import { getSize } from '@src/utils/dom';
@@ -211,7 +211,7 @@ export function GridCell({ date, events = [], style, parentContainer, contentAre
   const layoutContainer = useLayoutContainer();
   const { showSeeMorePopup } = useDispatch('popup');
 
-  const theme = useTheme(useMonthTheme);
+  const theme = useTheme(monthThemeSelector);
   const { renderDate } = useStore(viewSelector);
   const backgroundColor = getDateBackgroundColor({ date, theme, renderDate });
 
