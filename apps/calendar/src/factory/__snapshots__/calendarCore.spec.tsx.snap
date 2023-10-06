@@ -103,6 +103,7 @@ Object {
         "borderLeft": "none",
       },
       "gridCell": Object {
+        "eventHeight": 24,
         "footerHeight": null,
         "headerHeight": 31,
       },

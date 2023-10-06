@@ -10,7 +10,6 @@ import { ResizingGuideByRow } from '@src/components/dayGridMonth/resizingGuideBy
 import {
   MONTH_CELL_BAR_HEIGHT,
   MONTH_CELL_PADDING_TOP,
-  MONTH_EVENT_HEIGHT,
   MONTH_EVENT_MARGIN_TOP,
 } from '@src/constants/style';
 import { useStore } from '@src/contexts/calendarStore';
@@ -67,7 +66,8 @@ export function DayGridMonth({ dateMatrix = [], rowInfo = [], cellWidthMap = [] 
   const [gridContainer, setGridContainerRef] = useDOMNode<HTMLDivElement>();
   const calendar = useStore(calendarSelector);
   // TODO: event height need to be dynamic
-  const { ref, cellContentAreaHeight } = useCellContentAreaHeight(MONTH_EVENT_HEIGHT);
+  const { eventHeight } = useTheme(monthGridCellSelector);
+  const { ref, cellContentAreaHeight } = useCellContentAreaHeight(eventHeight);
 
   const { eventFilter, month: monthOptions, isReadOnly } = useStore(optionsSelector);
   const { narrowWeekend, startDayOfWeek } = monthOptions as CalendarMonthOptions;
@@ -126,7 +126,7 @@ export function DayGridMonth({ dateMatrix = [], rowInfo = [], cellWidthMap = [] 
                 name="month"
                 events={uiModels}
                 contentAreaHeight={cellContentAreaHeight}
-                eventHeight={MONTH_EVENT_HEIGHT}
+                eventHeight={eventHeight}
                 className={cls('weekday-events')}
               />
               <GridSelectionByRow

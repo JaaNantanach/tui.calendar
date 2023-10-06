@@ -195,6 +195,7 @@ interface MonthTheme {
   gridCell: {
     headerHeight: number | null;
     footerHeight: number | null;
+    eventHeight: number
   };
 }
 ```
@@ -207,7 +208,7 @@ interface MonthTheme {
 | [moreView](#month-moreview)                             | <code>DEFAULT_MORE_VIEW</code>                        | ‘More events’ popup of monthly view                   |
 | [moreViewTitle](#month-moreviewtitle)                   | <code>{ backgroundColor: 'inherit' }</code>           | Header area of ‘more events’ popup of monthly view    |
 | [weekend](#month-weekend)                               | <code>{ backgroundColor: 'inherit' }</code>           | Weekend cell in monthly view                          |
-| [gridCell](#month-gridcell)                             | <code>{ headerHeight: 31, footerHeight: null }</code> | Header and footer height of all cells in monthly view |
+| [gridCell](#month-gridcell)                             | <code>DEFAULT_GRID_CELL</code> | Header and footer height of all cells in monthly view |
 
 ```ts
 const DEFAULT_MONTH_DAYEXCEPTTHISMONTH = {
@@ -226,6 +227,12 @@ const DEFAULT_MORE_VIEW = {
   backgroundColor: 'white',
   width: null,
   height: null,
+};
+
+const DEFAULT_GRID_CELL = { 
+  headerHeight: 31, 
+  footerHeight: null, 
+  eventHeight: 24 
 };
 ```
 

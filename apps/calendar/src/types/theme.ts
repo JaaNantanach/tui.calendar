@@ -85,6 +85,7 @@ export type MonthTheme = {
   gridCell: {
     headerHeight: number | null;
     footerHeight: number | null;
+    eventHeight: number;
   };
   weekend: { backgroundColor: string };
 };

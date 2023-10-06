@@ -210,10 +210,11 @@ interface Props {
 export function GridCell({ date, events = [], style, parentContainer, contentAreaHeight }: Props) {
   const layoutContainer = useLayoutContainer();
   const { showSeeMorePopup } = useDispatch('popup');
-
   const theme = useTheme(monthThemeSelector);
   const { renderDate } = useStore(viewSelector);
+
   const backgroundColor = getDateBackgroundColor({ date, theme, renderDate });
+  const { eventHeight } = theme.gridCell;
 
   const { popupPosition, containerRefCallback } = usePopupPosition(
     events.length,
@@ -234,7 +235,7 @@ export function GridCell({ date, events = [], style, parentContainer, contentAre
   const exceedCount = getExceedCount(
     events,
     contentAreaHeight,
-    MONTH_EVENT_HEIGHT + MONTH_EVENT_MARGIN_TOP
+    eventHeight + MONTH_EVENT_MARGIN_TOP
   );
 
   return (

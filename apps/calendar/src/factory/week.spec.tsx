@@ -173,7 +173,7 @@ describe('Primary Timezone', () => {
         timezone: {
           zones: [
             {
-              timezoneName: 'Australia/Sydney', // UTC+10
+              timezoneName: 'Asia/Bangkok', // UTC+7
             },
           ],
         },
@@ -183,7 +183,7 @@ describe('Primary Timezone', () => {
     // Then
     targetEvent = screen.getByText(reTargetEvent);
 
-    expect(hasDesiredStartTime(targetEvent, '05:00')).toBe(true);
+    expect(hasDesiredStartTime(targetEvent, '02:00')).toBe(true);
   });
 
   it('should render zoned events between the end of week and the start of week properly (Small offset difference)', () => {

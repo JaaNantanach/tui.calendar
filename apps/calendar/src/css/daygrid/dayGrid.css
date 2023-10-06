@@ -73,6 +73,7 @@
 
 /* TODO: define this class in more common place */
 .weekday-event {
+  display: flex;
   cursor: pointer;
 }
 
